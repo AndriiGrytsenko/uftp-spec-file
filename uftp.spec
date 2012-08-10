@@ -33,11 +33,18 @@ make %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-
+install -d -m 0755 %{buildroot}/etc/init.d
+install -d -m 0755 %{buildroot}/etc/sysconfig
+mv uftpd-conf uftpd
+install -m 0755 uftpd %{buildroot}/etc/sysconfig/
+mv uftpd-init uftpd
+install -m 0755 uftpd %{buildroot}/etc/init.d/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+/sbin/chkconfig --add uftpd
 
 %files
 %defattr(-,root,root,-)
@@ -45,12 +52,12 @@ rm -rf $RPM_BUILD_ROOT
 /bin/uftp_keymgt
 /usr/sbin/uftpd
 /usr/sbin/uftpproxyd
+/etc/init.d/uftpd
+/etc/sysconfig/uftpd
 %doc /usr/share/man/man1/uftp.1.gz
 %doc /usr/share/man/man1/uftpd.1.gz
 %doc /usr/share/man/man1/uftpproxyd.1.gz
 %doc /usr/share/man/man1/uftp_keymgt.1.gz
-
-
 
 %changelog
 

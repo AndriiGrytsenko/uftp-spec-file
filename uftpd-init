@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# uftpd   Encrypted UDP based ftp with multicast - client daemon
+#         
+#
+# chkconfig: - 27 73
+# description: Encrypted UDP based ftp with multicast - client daemon
+# processname: uftpd
+# pidfile: /var/run/uftpd.pid
+
+### BEGIN INIT INFO
+# Provides: uftpd
+# Required-Start: $network $local_fs
+# Required-Stop: $network $local_fs 
+# Should-Start: 
+# Should-Stop: 
+# Default-Start: 
+# Default-Stop: 
+# Short-Description: Encrypted UDP based ftp with multicast - client daemon
+# Description: Encrypted UDP based ftp with multicast - client daemon
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+uftpd=/usr/sbin/uftpd
+prog=uftpd
+
+if [ -r /etc/sysconfig/uftpd ] ; then
+	. /etc/sysconfig/uftpd
+fi
+
+RETVAL=0
+
+function start() {
+	[ -x $uftpd ] || exit 5
+	# Start daemons.
+	echo -n $"Starting $prog: "
+	daemon --pidfile=$pidfile ${uftpd} $OPTIONS 
+	RETVAL=$?
+	
+	echo
+	return $RETVAL
+}
+
+function stop() {
+	# Stop daemons.
+	echo -n $"Stopping $prog: "
+
+	killproc -p $pidfile ${uftpd}
+	RETVAL=$?
+
+	echo
+	return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		RETVAL=$?
+		;;
+	stop)
+		stop
+		RETVAL=$?
+		;;
+	status)
+		status -p $pidfile ${uftpd}
+		RETVAL=$?
+		;;
+	restart|force-reload)
+		stop
+		start
+		RETVAL=$?
+		;;
+	usage)
+		echo $"Usage: $0 {start|stop|restart|status|usage}"
+		RETVAL=0
+		;;
+	*)
+		echo $"Usage: $0 {start|stop|restart|status|usage}"
+		RETVAL=2
+esac
+
+exit $RETVAL
+
+
+chkconfig --add uftpd
+

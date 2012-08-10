@@ -1,0 +1,4 @@
+pidfile="/var/run/uftpd.pid"
+OPTIONS="-x 3 -L logfile -D /var/ftp -P $pidfile"
+
+

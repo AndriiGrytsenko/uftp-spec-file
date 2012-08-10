@@ -1,7 +1,7 @@
 uftpd-spec-file
 ===============
 
-This is just a **RPM .SPEC file** of UFTP program <http://www.tcnj.edu/~bush/uftp.html> for CentOS/RHEL 5/6.
+Here you can find **RPM .SPEC file** and **LSB script** for UFTP program <http://www.tcnj.edu/~bush/uftp.html> both are compatible with CentOS/RHEL 5/6.
 
 
 ## More information about UFTP
@@ -9,4 +9,11 @@ UFTP is an encrypted multicast file transfer program, designed to securely, reli
 
 ## Download source code
 You can download source code from project official page <http://www.tcnj.edu/~bush/uftp.html>
+
+## RPM build procedure
+1. get latest version of UFTP 
+2. unpack to the arhive
+3. put files *uftpd-conf* and *uftpd-init* into directory with a source code
+4. gzip directory with name like *uftp-3.7.tar.gz* and put it into ~/rpmbuild/SOURCES
+5. Run `rpmbuild -ba --nodeps ~/rpmbuild/SPECS/uftp.spec` to build the RPM archive
 

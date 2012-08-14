@@ -16,11 +16,12 @@ You can download source code from project official page <http://www.tcnj.edu/~bu
 3. Run `rpmbuild -ba --nodeps ~/rpmbuild/SPECS/uftp.spec` to build the RPM archive
 
 ## Little bit about the .spec file
-It provides two RPM packages:..
-1. uftp-client..
-2. uftp-server..
+It provides two RPM packages:   
+1. uftp-client   
+2. uftp-server   
 
-In first one you will be able to find client daemon and proxy, where in second one - server tool to send files. *uftp_keymgt* is provided by bo
+In first one you will be able to find client daemon and proxy, where in second one - server tool to send files.   
+*uftp_keymgt* is provided by both packages. 
 
 ## Puppet module
 I also put puppet module for client daemon into *puppet_module* directory. 

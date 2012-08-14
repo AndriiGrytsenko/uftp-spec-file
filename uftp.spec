@@ -7,6 +7,8 @@ Group:          FTP Server
 License:        GPL
 URL:            http://www.tcnj.edu/~bush/uftp.html
 Source0:        %{name}-%{version}.tar.gz
+Source1:        uftpd-init
+Source2:        uftpd-conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl-devel
@@ -42,10 +44,8 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 install -d -m 0755 %{buildroot}/etc/init.d
 install -d -m 0755 %{buildroot}/etc/sysconfig
-mv uftpd-conf uftpd
-install -m 0755 uftpd %{buildroot}/etc/sysconfig/
-mv uftpd-init uftpd
-install -m 0755 uftpd %{buildroot}/etc/init.d/
+install -T -m 0755 $RPM_SOURCE_DIR/uftpd-conf %{buildroot}/etc/sysconfig/uftpd
+install -T -m 0755 $RPM_SOURCE_DIR/uftpd-init %{buildroot}/etc/init.d/uftpd
 
 %clean
 rm -rf $RPM_BUILD_ROOT

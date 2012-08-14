@@ -12,10 +12,8 @@ You can download source code from project official page <http://www.tcnj.edu/~bu
 
 ## RPM build procedure
 1. get latest version of UFTP.
-2. unpack to the arhive
-3. put files *uftpd-conf* and *uftpd-init* into directory with a source code
-4. gzip directory with name like *uftp-3.7.tar.gz* and put it into ~/rpmbuild/SOURCES
-5. Run `rpmbuild -ba --nodeps ~/rpmbuild/SPECS/uftp.spec` to build the RPM archive
+2. put uftp-3.7.tar.gz* and files *uftpd-conf* and *uftpd-init* into ~/rpmbuild/SOURCES
+3. Run `rpmbuild -ba --nodeps ~/rpmbuild/SPECS/uftp.spec` to build the RPM archive
 
 ## Little bit about the .spec file
 It provides two RPM packages:..

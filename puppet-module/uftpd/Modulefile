@@ -1,0 +1,8 @@
+name    'uftpd'
+version '0.0.1'
+author  'Andrii Grytsenko'
+license 'Apache2'
+project_page 'https://github.com/AndriiGrytsenko/uftp-spec-file'
+source  'https://github.com/AndriiGrytsenko/uftp-spec-file/puppet-module'
+summary 'Puppet module for uftpd'
+description 'This module installs and manages uftpd client.'

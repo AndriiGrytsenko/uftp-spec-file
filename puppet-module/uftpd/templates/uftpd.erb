@@ -1,0 +1,5 @@
+pidfile="<%= @pidfile || '/var/run/uftpd.pid' %>"
+destination_dir="<%= @destination_dir %>"
+logfile="<%= @logfile || '/var/log/uftpd.log' %>"
+OPTIONS="-x 3 -L $logfile -D $destination_dir -P $pidfile"
+

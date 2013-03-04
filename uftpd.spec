@@ -1,14 +1,14 @@
 Name:           uftp
-Version:        3.7
+Version:        3.7.1
 Release:        1
 Summary:        UFTP - Encrypted UDP based FTP with multicast
 
 Group:          FTP Server
 License:        GPL
 URL:            http://www.tcnj.edu/~bush/uftp.html
-Source0:        %{name}-%{version}.tar.gz
-Source1:        uftpd-init
-Source2:        uftpd-conf
+Source0:        http://www.tcnj.edu/~bush/downloads/%{name}-%{version}.tar
+Source1:        https://raw.github.com/AndriiGrytsenko/uftp-spec-file/master/uftpd-init
+Source2:        https://raw.github.com/AndriiGrytsenko/uftp-spec-file/master/uftpd-conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  openssl-devel
@@ -25,7 +25,7 @@ This package provides the server part of encrypted UDP based ftp with multicast
 
 %package client
 Summary:    Client daemon for encrypted UDP based ftp with multicast
-Group:      FTP Server
+Group:      FTP Client
 
 %description client
 This package provides the client daemon encrypted UDP based ftp with multicast 
@@ -52,6 +52,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add uftpd
+
+%preun
+/sbin/service uftpd stop > /dev/null 2>&1
+/sbin/chkconfig --del uftpd
 
 %files server
 %defattr(-,root,root,-)

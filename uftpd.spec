@@ -50,10 +50,10 @@ install -T -m 0755 $RPM_SOURCE_DIR/uftpd-init %{buildroot}/etc/init.d/uftpd
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
+%post client
 /sbin/chkconfig --add uftpd
 
-%preun
+%preun client
 /sbin/service uftpd stop > /dev/null 2>&1
 /sbin/chkconfig --del uftpd
 
